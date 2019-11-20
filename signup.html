@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        body{
+            font-size: 10pt;
+            font-family: Verdana, Helvetica, sans-serif;
+            color: #003300;
+        }
+        h1{
+            font-size: 12pt;
+            text-align: center;
+        }
+        p{
+            margin: 0px 40px 20px 40px
+        }
+        td{
+            padding: 5px;
+        }
+        td.name{
+            text-align: right;
+        }
+        td.data{
+            text-align: left;
+        }
+        .ui-datepicker-trigger{cursor: pointer;}
+        .hasDatepicker{cursor: pointer;}
+    </style>
+
+    <script>
+        $(function(){
+            $("#Submit").click(function(){
+                if(validateForm()){
+                    alert("success");
+                    $("#box").animate({
+                        width: "400px"
+                    }, {
+                        duration: 200,
+                        easing: "linear",
+                    });
+                }
+            });
+            $("#datepicker").datepicker({
+                showOtherMonths: true
+                ,showMonthAfterYear:true
+                ,changeYear: true
+                ,changeMonth: true
+                ,minDate: "-100Y"
+                ,maxDate: "-1D" ,
+                onSelect: function (selectedDate) {
+                    alert(selectedDate);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function validateLetter(str){
+            for(i=0;i<str.length;i++){
+                if(('a'<=str.charAt(i)&&str.charAt(i)<='z')||('A'<=str.charAt(i)&&str.charAt(i)<='Z'));
+                else{
+                    alert("Please write only letters in Name and City");
+                    return false;
+                }
+            }
+            return true;
+        }
+        function validateBirth(d,m,y){
+            if(isNaN(d)||isNaN(m)||isNaN(y)){
+                alert("Please write only numbers in Birth");
+                return false;
+            }
+            var date=parseInt(d,10);
+            var month=parseInt(m,10);
+            var year=parseInt(y,10);
+            if(month>12||month<1){
+                alert("Please write proper month 1 to 12");
+                return false;
+            }
+            if(date>31||date<1){
+                alert("Please write proper date 1 to 31");
+                return false;
+            }
+            if(year<1900){
+                alert("Please write proper year more than 1900");
+                return false;
+            }
+            if(month==2||month==4||month==6||month==9||month==11){
+                if(date>30){
+                    alert("Please write proper date 1 to 30");
+                    return false;
+                }
+                if(month==2){
+                    if(isLeapYear(year)&&date>29){
+                        alert("Please write proper date 1 to 29 in leap year");
+                        return false;
+                    }
+                    else if(!isLeapYear(year)&&date>28){
+                        alert("Please write proper date 1 to 28 in not leap year");
+                        return false;
+                    }
+                }
+            }
+            var obj = new Date();
+            if(year>obj.getFullYear()){
+                alert("Please write proper year less than present");
+                return false;
+            }
+            else if(year==obj.getFullYear()){
+                if(month>obj.getMonth()+1){
+                    alert("Please write proper month less than present");
+                    return false;
+                }
+                else if(month==obj.getMonth()+1){
+                    if(date>obj.getDate()){
+                        alert("Please write proper date less than present");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        function validateZip(str){
+            if(/^[a-zA-Z]{1,}[ ][0-9]{1,}$/.test(str))
+                return true;
+            alert('ZipCode has at least one letter followed by a white space, followed by at least one digit');
+            return false;
+        }
+        function validateEmail(str){
+            if (/^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/.test(str))
+                return true;
+            alert("You have entered an invalid email address!")
+            return false;
+        }
+
+        function validateForm(){
+            var nameFlag= document.forms["personal_info"]["name_text"].value;
+            var emailFlag= document.forms["personal_info"]["email_text"].value;
+            var genderFlag= document.forms["personal_info"]["select_gender"].value;
+            var addr1Flag= document.forms["personal_info"]["addr1_text"].value;
+            var addr2Flag= document.forms["personal_info"]["addr2_text"].value;
+            var cityFlag= document.forms["personal_info"]["city_text"].value;
+            var zipFlag= document.forms["personal_info"]["zip_text"].value;
+            if(nameFlag==""||emailFlag==""||genderFlag=="None"||addr1Flag==""||addr2Flag==""||cityFlag==""||zipFlag==""){
+                alert("All of areas are mandatory");
+                document.getElementById("personal_info").reset();
+                return;
+            }
+            if(validateLetter(nameFlag)&&validateLetter(cityFlag)&&validateZip(zipFlag)&&validateEmail(emailFlag))
+                return true;
+            else
+                return false;
+        }
+
+        function isLeapYear(year){
+            return_value = true;
+            if ((year % 4) != 0)
+                return_value = false;
+            else if (((year % 100) == 0) & ((year % 400) != 0))
+                return_value = false;
+            return return_value;
+        }
+    </script>
+</head>
+<body>
+
+<h1>Personal Information</h1>
+<form method = "get" action = "../Signup/signup.php" name="personal_info" id="personal_info">
+    <table align="center" border="0">
+        <tbody><tr>
+            <td class="name">
+                ID:
+            </td>
+            <td class="data">
+                <input type="text" name="name_text" id="id_text" width="20" maxlength="40" size="20">
+            </td>
+        </tr>
+        <tr>
+            <td class="name">
+                Password:
+            </td>
+            <td class="data">
+                <input type="password" name="name_text" id="password_text" width="20" maxlength="40" size="20">
+            </td>
+        </tr>
+        <tr>
+            <td class="name">
+                Name:
+            </td>
+            <td class="data">
+                <input type="text" name="name_text" id="name_text" width="20" maxlength="40" size="20">
+            </td>
+        </tr>
+        <tr>
+            <td class="name">
+                E-mail address:
+            </td>
+            <td class="data">
+                <input type="email" name="email_text" id="email_text" width="20" maxlength="40" size="20">
+            </td>
+        </tr>
+        <tr>
+            <td class="name">
+                Street address (line 1):
+            </td>
+            <td class="data">
+                <input type="text" name="addr1_text" id="addr1_text" width="6" size="6" maxlength="5">
+            </td>
+        </tr>
+        <tr>
+            <td class="name">
+                Street address (line 2):
+            </td>
+            <td class="data">
+                <input type="text" name="addr2_text" id="addr2_text" width="6" size="6" maxlength="5">
+            </td>
+        </tr>
+        <tr>
+            <td class="name">
+                City:
+            </td>
+            <td class="data">
+                <input type="text" name="city_text" id="city_text" width="6" size="6" maxlength="5">
+            </td>
+        </tr>
+        <tr>
+            <td class="name">
+                ZIP code:
+            </td>
+            <td class="data">
+                <input type="text" name="zip_text" id="zip_text" width="6" size="6" maxlength="5">
+            </td>
+        </tr>
+        <tr>
+            <td class="name">
+                <input type="button" value="Submit" id="Submit">
+            </td>
+            <td class="data">
+                <input type="reset" value="Clear">
+            </td>
+        </tr>
+        </tbody></table>
+</form>
+<div style="border:1px solid green;margin-left: auto;
+        margin-right: auto;width:400px;">
+    <div id="box" style="background:#98bf21;height:50px;width:1px;border:1px solid green;"></div>
+</div>
+</body>
+</html>
