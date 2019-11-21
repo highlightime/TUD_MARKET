@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset = 'utf-8'>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <style>
     table.table2{
@@ -51,28 +52,48 @@
         <tr>
             <td bgcolor=white>
                 <table class = "table2">
-                    <tr>
-                        <td>Title</td>
-                        <td><input type = text name = title size=60></td>
-                    </tr>
 
-                    <tr>
-                        <td>Content</td>
-                        <td><textarea name = content cols=85 rows=15></textarea></td>
-                    </tr>
+                        <tr>
+                            <td>Title</td>
+                            <td><input type = text id="title" name = title size=60></td>
+                        </tr>
 
-                    <tr>
-                        <td>File</td>
-                        <td><input type = file name = file size=60></td>
-                    </tr>
+                        <tr>
+                            <td>Content</td>
+                            <td><textarea id="content" name = content cols=85 rows=15></textarea></td>
+                        </tr>
+
+                        <tr>
+                            <td>File</td>
+                            <td><input type = file name = file size=60></td>
+                        </tr>
                 </table>
-
-                <center>
-                    <input type = "submit" value="upload">
-                </center>
             </td>
         </tr>
     </table>
 </form>
+<button id="btn_submit">UPLOAD</button>
+<script>
+    $('#btn_submit').click(function(){
+        if(validate()){
+            $('form').submit();
+        }
+    });
+
+    function validate(){
+        title = document.getElementById("title").value;
+        content = document.getElementById("content").value;
+        return_value = true;
+
+        if(title == '' || content == ''){
+            alert("Please write title and content");
+            return_value = false;
+            return return_value;
+        }else{
+            return_value = true;
+            return return_value;
+        }
+    }
+</script>
 </body>
 </html>
