@@ -111,10 +111,16 @@
                 <h2 class="w3-wide">Profile update</h2>
                 <img src="profile_photo/DSC_0009.jpg" alt="<?php echo $_SESSION['id']?>" style="width: 100%">
                 <h1><?php echo $_SESSION['id']?></h1>
-                <p><input class="w3-input w3-border" id="update_password" type="password" placeholder="ENTER NEW PASSWORD" style="width:100%"></p>
-                <p><input class="w3-input w3-border" id="update_repassword" type="password" placeholder="RE-ENTER NEW PASSWORD" style="width:100%"></p>
-                <p><input class="w3-input w3-border" id="update_email" type="text" placeholder="ENTER NEW EMAIL" style="width:100%"></p>
-                <p><input class="w3-input w3-border" id="update_address" type="text" placeholder="ENTER NEW ADDRESS" style="width:100%"></p>
+                <?php
+                    $query = "select * from member where id = '$id'";
+                    $result = mysqli_query($connect, $query);
+                    $row = mysqli_fetch_assoc($result);
+                ?>
+                <p><input class="w3-input w3-border" id="update_password" type="password" value="<?php echo $row['pw']?>" style="width:100%"></p>
+                <p><input class="w3-input w3-border" id="update_repassword" type="password" value="<?php echo $row['pw']?>" style="width:100%"></p>
+                <p><input class="w3-input w3-border" id="update_email" type="text" value="<?php echo $row['mail']?>" style="width:100%"></p>
+                <p><input class="w3-input w3-border" id="update_address" type="text" value="<?php echo $row['addr']?>" style="width:100%"></p>
+                <p><input class="w3-input w3-border" id="update_city" type="text" value="<?php echo $row['city']?>" style="width:100%"></p>
                 <button id="btn_profile_update">UPDATE</button>
             </div>
         </div>

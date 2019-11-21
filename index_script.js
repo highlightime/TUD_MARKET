@@ -20,16 +20,18 @@ $('#btn_sell_item').click(function () {
 
 $('#btn_edit_info').click(function () {
     document.getElementById('private').style.display='block';
+
 });
 $('#btn_profile_update').click(function () {
     password = document.getElementById("update_password").value;
     repassword = document.getElementById("update_repassword").value;
     email = document.getElementById("update_email").value;
     address = document.getElementById("update_address").value;
+    city = document.getElementById("update_city");
 
     if(password == repassword){
         document.getElementById('private').style.display='none';
-        document.location = "modify_profile.php?password=" + password + "&email=" + email + "&address=" + address;
+        document.location = "modify_profile.php?password=" + password + "&email=" + email + "&address=" + address + "&city=" + city;
     }else{
         alert("passwords don't match");
     }
