@@ -40,3 +40,4 @@ $('#btn_profile_update').click(function () {
 $('#btn_logout').click(function () {
     document.location = "logout.php";
 });
+

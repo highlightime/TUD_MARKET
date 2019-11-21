@@ -10,7 +10,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="index_style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     </head>
     <body class="w3-content" style="max-width:1200px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
         <!-- Sidebar/menu -->
@@ -35,7 +38,7 @@
                         $row = mysqli_fetch_assoc($result);
                         ?>
                         <!-- profile photo -->
-                        <img src="profile_photo/DSC_0009.jpg" alt="<?php echo $_SESSION['id']?>" style="width: 100%">
+                        <img class="img-circle" src="profile_photo/DSC_0009.jpg" alt="<?php echo $_SESSION['id']?>" style="width: 100%;">
                         <h1><?php echo $_SESSION['id']?></h1>
                         <p class="email"><?php echo $row['mail']?></p>
                         <div style="margin: 24px 0;">
@@ -90,7 +93,7 @@
                         }
                         ?>
                         <td width="50" align="center"><?php echo $total ?></td>
-                        <td width="500" align="center"><a href = "view.php?board_id=<?php echo $rows['board_id']?>"><?php echo $rows['title'] ?></td>
+                        <td width="500" align="center"><a href="view.php?board_id=<?php echo $rows['board_id']?>"><?php echo $rows['title'] ?></a></td>
                         <td width="100" align="center"><?php echo $rows['author'] ?></td>
                         <td width="200" align="center"><?php echo $rows['date'] ?></td>
                         <td width="50" align="center"><?php echo $rows['hit'] ?></td>
