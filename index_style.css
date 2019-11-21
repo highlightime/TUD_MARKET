@@ -1,0 +1,57 @@
+.items table{
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+}
+.items tr{
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+}
+.items td{
+    border-bottom: 1px solid #efefef;
+    padding: 10px;
+}
+.items table .even{
+    background: #efefef;
+}
+.w3-sidebar a {
+    font-family: "Roboto", sans-serif
+}
+
+body,h1,h2,h3,h4,h5,h6,.w3-wide {
+    font-family: "Montserrat", sans-serif;
+}
+
+.profile{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+.profile .email{
+    color: grey;
+    font-size: 18px;
+}
+
+.profile button{
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.profile a{
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+}
+
+.profile button:hover, a:hover{
+    opacity: 0.7;
+}

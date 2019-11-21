@@ -6,7 +6,6 @@
     $id = $_GET['id'];
     $password = $_GET['pw'];
 
-
     //id가 있는지 체크
     $query = "select * from member where user_id='$id'";
     $result = $connect -> query($query);
