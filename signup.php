@@ -1,29 +1,31 @@
 <?php
  
-        $connect = mysqli_connect('localhost', '', '', '') or die("fail");
+        session_start();
+
+        $connect = mysqli_connect('localhost', 'root', '', 'Second_market') or die ("connect fail");
  
-        $id=$_GET[id];
-        $pw=$_GET[pw];
-        $email=$_GET[email];
-        $addr=$_GET[addr1_text];
-        $city=$_GET[city_text];
+        $id=$_GET['id'];
+        $pw=$_GET['pw'];
+        $email=$_GET['email_text'];
+        $addr=$_GET['addr1_text'];
+        $city=$_GET['city_text'];
  
-        $date = date('Y-m-d H:i:s');
  
-        $query = "insert into member (id, pw, mail, date, addr, city, permit) values ('$id', '$pw', '$email', '$addr', '$city', '$date', 0)";
+        $query = "insert into member (id, pw, mail, addr, city) values ('$id', '$pw', '$email', '$addr', '$city')";
  
         $result = $connect->query($query);
  
         if($result) {
         ?>      <script>
-                alert('가입 되었습니다.');
-                location.replace("./login_action.php");
+                alert('join complete');
+                location.replace("index.php");
                 </script>
  
 <?php   }
         else{
 ?>              <script>                   
-                        alert("fail");
+                    alert("join fail");
+                    history.back();
                 </script>
 <?php   }
  
