@@ -17,6 +17,7 @@
         $rows = mysqli_fetch_assoc($result);
         $hit = $rows['hit'] + 1;
         ?>
+        <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 
         <style>
             view_table {
@@ -141,9 +142,9 @@
                 <form method="post" action="reply_action.php">
                     <input type="hidden" name="board_id" class="bno" value="<?php echo $board_id?>">
                     <textarea name="content" class="reply_content" id="re_content"></textarea>
-                 <input type="submit" value="Reply">
                 </form>
             </div>
+            <button id="btn_rply">REPLY</button>
         </div>
         <!-- MODIFY & DELETE -->
         <div class="view_btn">
@@ -159,6 +160,24 @@
         <?php
     }
     ?>
+    <script>
+        $('#btn_rply').click(function () {
+            if(validate()) {
+                $('form').submit();
+            }
+        });
+
+        function validate(){
+            content = document.getElementById('re_content').value;
+
+            if(content == ''){
+                alert('Please write down something');
+                return false;
+            }else{
+                return true;
+            }
+        }
+    </script>
 <style>
     /* 댓글 */
     .reply_view {
