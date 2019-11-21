@@ -4,7 +4,7 @@
 
     $board_id = $_POST['board_id'];
     $content = $_POST['content'];
-    $author = $_SESSION['userid'];
+    $author = $_SESSION['id'];
 
     $query = "insert into reply (board_id, content, author) values ('$board_id', '$content', '$author')";
 

@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if(!isset($_SESSION['userid'])){
+    if(!isset($_SESSION['id'])){
         ?>
             <script>
                 alert("You're not allowed to access");

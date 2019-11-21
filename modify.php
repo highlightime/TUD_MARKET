@@ -37,7 +37,7 @@
     $title = $_GET['title'];
     $content = $_GET['content'];
 
-    If(!isset($_SESSION['userid'])){
+    If(!isset($_SESSION['id'])){
         ?>
         <script>
             alert("only allowed to member");

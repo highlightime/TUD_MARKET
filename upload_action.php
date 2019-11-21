@@ -43,7 +43,7 @@
 
     $title = $_POST['title'];
     $content = $_POST['content'];
-    $author = $_SESSION['userid'];
+    $author = $_SESSION['id'];
     $date = date('Y-m-d');
 
     $query = "insert into board (title, content, author, date, hit) values ('$title', '$content', '$author', '$date', 0)";
