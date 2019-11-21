@@ -28,8 +28,6 @@
 	td.data{
 		text-align: left;
 	}
-    .ui-datepicker-trigger{cursor: : pointer;}
-    .hasDatepicker{cursor: pointer;}
 </style>
     
     
@@ -45,17 +43,6 @@ $(function(){
             easing: "linear",
             });
         }
-    });
-    $("#datepicker").datepicker({
-            showOtherMonths: true 
-            ,showMonthAfterYear:true 
-            ,changeYear: true 
-            ,changeMonth: true                  
-            ,minDate: "-100Y" 
-            ,maxDate: "-1D" ,
-            onSelect: function (selectedDate) {
-                alert(selectedDate);
-            }
     });
 });     
 
@@ -77,16 +64,17 @@ function validateEmail(str){
 }
 
 function validateForm(){
-    var nameFlag= document.forms["personal_info"]["name_text"].value;
+    var idFlag= document.forms["personal_info"]["id"].value;
+    var pwFlag= document.forms["personal_info"]["pw"].value;
     var emailFlag= document.forms["personal_info"]["email_text"].value;
     var addr1Flag= document.forms["personal_info"]["addr1_text"].value;
     var cityFlag= document.forms["personal_info"]["city_text"].value;
-     if(nameFlag==""||emailFlag==""||addr1Flag==""||cityFlag==""){
+     if(idFlag==""||pwFlag==""||emailFlag==""||addr1Flag==""||cityFlag==""){
         alert("All of areas are mandatory");
         document.getElementById("personal_info").reset();
         return;
     }
-    if(validateLetter(nameFlag)&&validateLetter(cityFlag)&&validateEmail(emailFlag))
+    if(validateLetter(idFlag)&&validateLetter(cityFlag)&&validateEmail(emailFlag))
         return true;
     else 
         return false;
@@ -100,12 +88,21 @@ function validateForm(){
 <h1>Personal Information</h1>
 <form name="personal_info" id="personal_info">
 <table align="center" border="0">
-<tbody><tr>
+<tbody>
+<tr>
 	<td class="name">
-		Name:
+		ID:
 	</td>
 	<td class="data">
-		<input type="text" name="name_text" id="name_text" width="20" maxlength="40" size="20">
+		<input type="text" name="id" id="id" width="20" maxlength="40" size="20">
+	</td>
+</tr>
+<tr>
+	<td class="name">
+		PW:
+	</td>
+	<td class="data">
+		<input type="password" name="pw" id="pw" width="20" maxlength="40" size="20">
 	</td>
 </tr>
 <tr>
@@ -118,18 +115,10 @@ function validateForm(){
 </tr>
 <tr>
 	<td class="name">
-		Date of Birth (DD/MM/YYYY):
-	</td>
-	<td class="data">
-        <input type="text" id="datepicker"/>
-	</td>
-</tr>
-<tr>
-	<td class="name">
 		Street address :
 	</td>
 	<td class="data">
-		<input type="text" name="addr1_text" id="addr1_text" width="6" size="6" maxlength="5">
+		<input type="text" name="addr1_text" id="addr1_text" width="20" size="20" maxlength="40">
 	</td>
 </tr>
 <tr>
@@ -137,7 +126,7 @@ function validateForm(){
 		City:
 	</td>
 	<td class="data">
-		<input type="text" name="city_text" id="city_text" width="6" size="6" maxlength="5">
+		<input type="text" name="city_text" id="city_text" width="20" size="20" maxlength="40">
 	</td>
 </tr>
 <tr>
