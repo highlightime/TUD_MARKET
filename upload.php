@@ -33,7 +33,7 @@
 <?php
     session_start();
 
-    If(!isset($_SESSION['userid'])){
+    If(!isset($_SESSION['id'])){
         ?>
         <script>
             alert("only allowed to member");

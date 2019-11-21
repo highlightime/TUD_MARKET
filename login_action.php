@@ -7,16 +7,16 @@
     $password = $_GET['pw'];
 
     //id가 있는지 체크
-    $query = "select * from member where user_id='$id'";
+    $query = "select * from member where id='$id'";
     $result = $connect -> query($query);
 
     //password 체크
     if(mysqli_num_rows($result) == 1){
      $row = mysqli_fetch_assoc($result);
 
-     if($row['user_password'] == $password){
-       $_SESSION['userid'] = $id;
-       if(isset($_SESSION['userid'])){
+     if($row['pw'] == $password){
+       $_SESSION['id'] = $id;
+       if(isset($_SESSION['id'])){
         ?>
          <script>
           alert("success!!");

@@ -23,21 +23,21 @@
                     session_start();
                     $connect = mysqli_connect('localhost', 'root', '', 'Second_market') or die ("connect fail");
 
-                    if(!isset($_SESSION['userid'])) {
+                    if(!isset($_SESSION['id'])) {
                         ?>
                         <h5 style="cursor: hand" onclick="location.href = 'login.html'">LOGIN</h5>
                         <?php
                     }else{
-                        $userid = $_SESSION['userid'];
+                        $id = $_SESSION['id'];
 
-                        $query = "select user_email from member where user_id = '$userid'";
+                        $query = "select mail from member where id = '$id'";
                         $result = mysqli_query($connect, $query);
                         $row = mysqli_fetch_assoc($result);
                         ?>
                         <!-- profile photo -->
-                        <img src="profile_photo/DSC_0009.jpg" alt="<?php echo $_SESSION['userid']?>" style="width: 100%">
-                        <h1><?php echo $_SESSION['userid']?></h1>
-                        <p class="email"><?php echo $row['user_email']?></p>
+                        <img src="profile_photo/DSC_0009.jpg" alt="<?php echo $_SESSION['id']?>" style="width: 100%">
+                        <h1><?php echo $_SESSION['id']?></h1>
+                        <p class="email"><?php echo $row['mail']?></p>
                         <div style="margin: 24px 0;">
                             <a href="#"><i class="fa fa-dribbble"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
@@ -109,8 +109,8 @@
             <div class="w3-container w3-white w3-center w3-animate-zoom profile">
                 <i class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge" onclick="document.getElementById('private').style.display='none'"></i>
                 <h2 class="w3-wide">Profile update</h2>
-                <img src="profile_photo/DSC_0009.jpg" alt="<?php echo $_SESSION['userid']?>" style="width: 100%">
-                <h1><?php echo $_SESSION['userid']?></h1>
+                <img src="profile_photo/DSC_0009.jpg" alt="<?php echo $_SESSION['id']?>" style="width: 100%">
+                <h1><?php echo $_SESSION['id']?></h1>
                 <p><input class="w3-input w3-border" id="update_password" type="password" placeholder="ENTER NEW PASSWORD" style="width:100%"></p>
                 <p><input class="w3-input w3-border" id="update_repassword" type="password" placeholder="RE-ENTER NEW PASSWORD" style="width:100%"></p>
                 <p><input class="w3-input w3-border" id="update_email" type="text" placeholder="ENTER NEW EMAIL" style="width:100%"></p>
