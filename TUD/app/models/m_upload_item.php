@@ -12,13 +12,6 @@
         {
             session_start();
 
-            $this->target_file = "../public/files/" . basename($_FILES["file"]["name"]);
-            $this->uploadOk = 1;
-
-            $this->connect = mysqli_connect('localhost', 'root', '', 'Second_market') or die ("connect fail");
-        }
-
-        public function upload(){
             $this->title = $_POST['title'];
             $this->content = $_POST['content'];
             $this->author = $_SESSION['id'];
@@ -26,6 +19,15 @@
 
             unset($_POST['title']);
             unset($_POST['content']);
+
+            $this->target_file = "../public/files/" . basename($_FILES["file"]["name"]);
+            $this->uploadOk = 1;
+
+            $this->connect = mysqli_connect('localhost', 'root', '', 'Second_market') or die ("connect fail");
+        }
+
+        public function upload(){
+
 
             $query = "insert into board (title, content, author, date, hit) values ('$this->title', '$this->content', '$this->author', '$this->date', 0)";
 
